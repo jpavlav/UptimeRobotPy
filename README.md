@@ -12,7 +12,7 @@ pip install uptimerobotpy
 
 Otherwise you can install from git:
 ```
-pip install git+https://github.com/jpavlav/PyUptimeRobot.git
+pip install git+https://github.com/jpavlav/UptimeRobotPy.git
 ```
 
 ## Usage

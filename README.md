@@ -7,7 +7,7 @@ This is a simple library to implement easy interaction with the UptimeRobot API.
 The latest stable release is available from Pypi:
 
 ```
-pip install pyuptimerobot
+pip install uptimerobotpy
 ```
 
 Otherwise you can install from git:

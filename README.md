@@ -18,7 +18,7 @@ pip install git+https://github.com/jpavlav/UptimeRobotPy.git
 ## Usage
 
 ```python
->>> from pyuptimerobot import UptimeRobot
+>>> from uptimerobotpy import UptimeRobot
 >>> up_robot = UptimeRobot(api_key=UPTIMEROBOT_API_KEY)
 >>> up.get_monitors()
 ```

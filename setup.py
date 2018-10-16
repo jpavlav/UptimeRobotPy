@@ -17,7 +17,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'pyuptimerobot'
 DESCRIPTION = 'Interact with UptimeRobot API'
-URL = 'https://github.com/jpavlav/PyUptimeRobot'
+URL = 'https://github.com/jpavlav/UptimeRobotPy'
 EMAIL = 'jpavlav@gmail.com'
 AUTHOR = 'Justin Palmer'
 REQUIRES_PYTHON = '>=3.5.0'

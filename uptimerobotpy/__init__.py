@@ -1,1 +1,1 @@
-from .uptime_robot.py import *
+from .uptime_robot import *

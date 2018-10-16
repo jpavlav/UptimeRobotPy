@@ -15,7 +15,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = 'pyuptimerobot'
+NAME = 'uptimerobotpy'
 DESCRIPTION = 'Interact with UptimeRobot API'
 URL = 'https://github.com/jpavlav/UptimeRobotPy'
 EMAIL = 'jpavlav@gmail.com'

@@ -1,4 +1,4 @@
-# PyUptimeRobot
+# UptimeRobotPy
 
 This is a simple library to implement easy interaction with the UptimeRobot API.
 

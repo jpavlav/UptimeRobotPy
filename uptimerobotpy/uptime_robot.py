@@ -9,6 +9,7 @@ import requests
 import configparser
 import os
 import copy
+import pathlib
 
 
 class UptimeRobot(object):
@@ -38,7 +39,7 @@ class UptimeRobot(object):
         self.endpoint = endpoint
         self._api_key = api_key
         self._req_obj = req_obj
-        self.payload = {'api_key': self._api_key}
+        self.payload = {'api_key': self.api_key}
 
     @property
     def request_session(self):
@@ -74,9 +75,15 @@ class UptimeRobot(object):
         """
         if not self._api_key:
             config = configparser.ConfigParser()
-            path = os.path.dirname(os.path.realpath(__file__))
-            config_file = os.path.join(path, 'uptimerobot.ini')
-            config.read(config_file)
+            home_dir = pathlib.Path.home()
+            config_file = os.path.join(home_dir, '.uptimerobot.ini')
+            if pathlib.Path(config_file).is_file():
+                config.read(config_file)
+            else:
+                key = input("Enter UptimeRobot API key: ")
+                config['UPTIMEROBOT'] = {'API_KEY': key}
+                with open(config_file, 'w') as configfile:
+                    config.write(configfile)
             self._api_key = config['UPTIMEROBOT']['API_KEY']
         return self._api_key
 

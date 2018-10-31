@@ -21,10 +21,10 @@ URL = 'https://github.com/jpavlav/UptimeRobotPy'
 EMAIL = 'jpavlav@gmail.com'
 AUTHOR = 'Justin Palmer'
 REQUIRES_PYTHON = '>=3.5.0'
-VERSION = '0.1.3'
+VERSION = '0.1.4'
 PACKAGES = ['uptimerobotpy']
 REQUIRED = [
-    'requests'
+    'requests>=2.20.0'
 ]
 
 EXTRAS = {}

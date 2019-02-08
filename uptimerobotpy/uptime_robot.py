@@ -168,11 +168,16 @@ class UptimeRobot(object):
             Returns a dict of parameters to be passed with the API call.
 
         """
-        kwargs = local_vars['kwargs']
-        del local_vars['route']
-        del local_vars['self']
-        del local_vars['kwargs']
-        return {**local_vars, **kwargs}
+        if 'kwargs' in local_vars:
+            kwargs = local_vars['kwargs']    
+            del local_vars['kwargs']
+            del local_vars['route']
+            del local_vars['self']
+            return {**local_vars, **kwargs}
+        else:
+            del local_vars['route']
+            del local_vars['self']
+            return {**local_vars}
 
     def _paginator(self, response, **kwargs):
         """Page through get_monitors output until all checks are returned.

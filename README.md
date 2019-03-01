@@ -18,20 +18,21 @@ pip install git+https://github.com/jpavlav/UptimeRobotPy.git
 ## Usage
 
 ```python
->>> from uptimerobotpy import UptimeRobot
->>> up_robot = UptimeRobot(api_key=UPTIMEROBOT_API_KEY)
->>> up_robot.get_monitors()
+    from uptimerobotpy import UptimeRobot
+    up_robot = UptimeRobot(api_key=UPTIMEROBOT_API_KEY)
+    monitors = up_robot.get_monitors()
+    for monitor in monitors['monitors']:
+        print(monitor)
 ```
 If no api_key is passed during instantiation, we try to handle this by creating a config file (~/.uptimerobot.ini) to read from:
 
 ```python
->>> from uptimerobotpy import UptimeRobot
->>> up_robot = UptimeRobot()
-Enter UptimeRobot API key: XXXXXXXXXXXXXXXX
->>> up_robot.get_monitors()
+    from uptimerobotpy import UptimeRobot
+    up_robot = UptimeRobot()
 ```
+> Enter UptimeRobot API key: XXXXXXXXXXXXXXXX
 
-The above config file is formatted as follows and can be created preemptively if you wish:
+The config file `.uptimerobot.ini` (see `example.uptimerobot.ini` above) is formatted as follows and can be created preemptively in your home directory if you wish:
 
 ```python
 [UPTIMEROBOT]

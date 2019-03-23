@@ -21,7 +21,7 @@ URL = 'https://github.com/jpavlav/UptimeRobotPy'
 EMAIL = 'jpavlav@gmail.com'
 AUTHOR = 'Justin Palmer'
 REQUIRES_PYTHON = '>=3.5.0'
-VERSION = '0.1.4'
+VERSION = '0.1.5'
 PACKAGES = ['uptimerobotpy']
 REQUIRED = [
     'requests>=2.20.0'
@@ -71,7 +71,8 @@ class UploadCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        os.system(
+            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
 
         self.status('Uploading the package to PyPI via Twine…')
         os.system('twine upload dist/*')

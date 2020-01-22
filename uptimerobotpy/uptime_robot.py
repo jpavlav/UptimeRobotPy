@@ -5,11 +5,11 @@
 Python3 library to ease interaction with the Uptime Robot API.
 """
 
-import requests
 import configparser
 import os
 import copy
 import pathlib
+import requests
 
 
 class UptimeRobot(object):
@@ -95,18 +95,8 @@ class UptimeRobot(object):
         response : str
             API call response
 
-        Raises
-        -------
-        requests.HTTPError
-            Raises this error if we get a response status code that is not in
-            the 200 range.
-
         """
-        if response.status_code // 100 == 2:
-            return True
-        else:
-            raise requests.HTTPError('{} ==> {}'.format(response.status_code,
-                                                        response.text))
+        return response.status_code // 100 == 2
 
     def _make_request(self, method="POST", route="/", **kwargs):
         """Utilize our session object to make requests.
@@ -142,6 +132,12 @@ class UptimeRobot(object):
         **kwargs : dict
             Arbitrary keyword arguments.
 
+        Raises
+        -------
+        requests.HTTPError
+            Raises this error if we get a response status code that is not in
+            the 200 range.
+
         Returns
         -------
         str
@@ -152,6 +148,10 @@ class UptimeRobot(object):
         response = self._make_request('POST', route, json=payload)
         if self._check_response(response):
             return response.json()
+        else:
+            raise requests.HTTPError('{} ==> {}'.format(response.status_code,
+                                                        response.text))
+
 
     def _handle_payload(self, local_vars):
         """Handles the creation of post payloads.
@@ -169,15 +169,15 @@ class UptimeRobot(object):
 
         """
         if 'kwargs' in local_vars:
-            kwargs = local_vars['kwargs']    
+            kwargs = local_vars['kwargs']
             del local_vars['kwargs']
             del local_vars['route']
             del local_vars['self']
             return {**local_vars, **kwargs}
-        else:
-            del local_vars['route']
-            del local_vars['self']
-            return {**local_vars}
+
+        del local_vars['route']
+        del local_vars['self']
+        return {**local_vars}
 
     def _paginator(self, response, **kwargs):
         """Page through get_monitors output until all checks are returned.
@@ -225,8 +225,7 @@ class UptimeRobot(object):
             Uptime Robot account.
 
         """
-        route = 'getAccountDetails'
-        return self._handle_routes(route)
+        return self._handle_routes('getAccountDetails')
 
     def get_monitors(self, **kwargs):
         """Get monitors based on the specified keyword arguments.
@@ -247,8 +246,7 @@ class UptimeRobot(object):
             Returns json string produced by calling the _handle_routes method.
 
         """
-        route = 'getMonitors'
-        return self._handle_routes(route, **kwargs)
+        return self._handle_routes('getMonitors', **kwargs)
 
     def get_all_monitors(self, **kwargs):
         """Get all monitors based on the specified keyword arguments.
